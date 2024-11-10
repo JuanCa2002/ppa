@@ -1,6 +1,8 @@
-package com.puntopago.ppa.infrastructure.adapters.in.rest.controllers.request.department;
+package com.puntopago.ppa.infrastructure.adapters.in.rest.controllers.request.municipality;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -10,12 +12,18 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class DepartmentRequest {
+public class MunicipalityRequest {
 
     @NotNull
     @NotBlank
     @Size(min = 1, max = 50)
-    @Schema(description = "Department name")
     @Pattern(regexp = "^[A-Z\s]+$", message = ": should only contain capital letters and spaces.")
+    @Schema(description = "Municipality name")
     private String name;
+
+    @NotNull
+    @Min(value = 1)
+    @Max(value = 999999999999999999L)
+    @Schema(description = "Department unique id to assign the municipality")
+    private Long departmentId;
 }

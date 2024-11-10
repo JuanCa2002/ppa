@@ -11,7 +11,7 @@ import org.springframework.data.repository.query.Param;
 public interface DepartmentRepository extends JpaRepository<DepartmentEntity, Long> {
 
     @Query("""
-            SELECT D FROM DepartmentEntity D WHERE (:name IS NULL OR UPPER(D.name) LIKE CONCAT('%', UPPER(:name), '%'))
+            SELECT D FROM DepartmentEntity D WHERE (:name IS NULL OR D.name LIKE %:name%)
             AND (:state IS NULL OR D.state = :state)
             """)
     Page<DepartmentEntity> findByCriteria(@Param("name") String name,
