@@ -15,13 +15,13 @@ spring:
     activate:
       on-profile: prod
   datasource:
-    url: ${DB_URL}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}
+    username: ${PGUSER}
+    password: ${PGPASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     properties:
-      hibernate.default_schema: ${DB_DEFAULT_SCHEMA}
+      hibernate.default_schema: MS_PPA_ADM
       jdbc:
         lob:
           non_contextual_creation: false
