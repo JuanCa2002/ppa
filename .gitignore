@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Ignorar archivo de configuración para el entorno de desarrollo local
+application-dev.yml
