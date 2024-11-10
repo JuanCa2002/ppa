@@ -45,4 +45,4 @@ request-mapping:
   controller:
     department: department
 
-domain: ${RAILWAY_PUBLIC_DOMAIN}
+domain: 
