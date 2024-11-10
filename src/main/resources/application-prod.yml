@@ -44,5 +44,6 @@ spring:
 request-mapping:
   controller:
     department: department
+    municipality: municipality
 
-domain: 
+domain:

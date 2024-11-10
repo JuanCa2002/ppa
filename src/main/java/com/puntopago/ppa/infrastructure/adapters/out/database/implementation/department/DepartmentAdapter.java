@@ -1,4 +1,4 @@
-package com.puntopago.ppa.infrastructure.adapters.out.database.implementation;
+package com.puntopago.ppa.infrastructure.adapters.out.database.implementation.department;
 
 import com.puntopago.ppa.application.exceptions.department.DepartmentNotFoundException;
 import com.puntopago.ppa.application.exceptions.general.ApiException;
@@ -53,7 +53,7 @@ public class DepartmentAdapter implements DepartmentPort {
         int pageNumber = (int) Math.ceil((double)skip/rowsPerPage);
         Pageable pageable = rowsPerPage == 0 ? Pageable.unpaged() : PageRequest.of(pageNumber, rowsPerPage);
 
-        Page<DepartmentEntity> page = repository.findByCriteria(name, state, pageable);
+        Page<DepartmentEntity> page = repository.findByCriteria(name != null ? name.toUpperCase(): null, state, pageable);
         return new PageModel<>(mapper.entitiesToDomains(page.getContent()), BigInteger.valueOf(page.getTotalElements()));
     }
 }

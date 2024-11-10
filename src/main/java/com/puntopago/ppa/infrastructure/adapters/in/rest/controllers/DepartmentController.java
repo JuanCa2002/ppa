@@ -10,6 +10,7 @@ import com.puntopago.ppa.infrastructure.adapters.in.rest.controllers.response.de
 import com.puntopago.ppa.infrastructure.adapters.in.rest.mappers.department.DepartmentMapperRest;
 import com.puntopago.ppa.infrastructure.ports.in.department.CreateDepartmentUseCase;
 import com.puntopago.ppa.infrastructure.ports.in.department.FindByCriteriaDepartmentUseCase;
+import com.puntopago.ppa.infrastructure.ports.in.department.FindByIdDepartmentUseCase;
 import com.puntopago.ppa.infrastructure.ports.in.department.UpdateDepartmentUseCase;
 import com.puntopago.ppa.infrastructure.ports.in.department.UpdateStateDepartmentUseCase;
 import lombok.RequiredArgsConstructor;
@@ -37,6 +38,8 @@ public class DepartmentController implements DepartmentApi {
     private final UpdateDepartmentUseCase updateDepartmentUseCase;
 
     private final FindByCriteriaDepartmentUseCase findByCriteriaDepartmentUseCase;
+
+    private final FindByIdDepartmentUseCase findByIdDepartmentUseCase;
 
     private final DepartmentMapperRest mapperRest;
 
@@ -67,5 +70,12 @@ public class DepartmentController implements DepartmentApi {
         var result = findByCriteriaDepartmentUseCase.execute(mapperRest.rqFilterToDomain(filter));
         PageResponse<List<DepartmentResponse>> response = new PageResponse<>(mapperRest.domainsToResponses(result.data()), result.total());
         return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    @Override
+    public ResponseEntity<DepartmentResponse> findById(@PathVariable Long id) throws ApiException {
+        var response = findByIdDepartmentUseCase.execute(id);
+        return new ResponseEntity<>(mapperRest.domainToResponse(response), HttpStatus.OK);
     }
 }
