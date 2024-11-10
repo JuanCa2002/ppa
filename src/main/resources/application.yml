@@ -1,0 +1,43 @@
+server:
+  port: 2208
+  servlet:
+    context-path: /api/v1/ppa
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    use-root-path: true
+  api-docs:
+    path: /swagger.v1+json
+
+spring:
+  datasource:
+    url: jdbc:postgresql://ppadatabase.cr4kse008ysf.us-east-2.rds.amazonaws.com:5432/ppadatabase
+    username: PPA_DEV_TEST
+    password: chupaelperro
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate.default_schema: MS_PPA_ADM
+      jdbc:
+        lob:
+          non_contextual_creation: false
+    generate-ddl: false
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  application:
+    name: punto-pago-air
+    version: v1
+  feign:
+    client:
+      config:
+        default:
+          connectTimeout: 2000
+          readTimeout: 2000
+          loggerLevel: basic
+
+request-mapping:
+  controller:
+    department: department
