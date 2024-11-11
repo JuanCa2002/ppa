@@ -32,7 +32,7 @@ import org.hibernate.annotations.DynamicUpdate;
 public class AirportEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_AIRPLANE")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_AIRPORT")
     @Column(name = "id")
     private Long id;
 
