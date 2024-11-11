@@ -45,5 +45,7 @@ request-mapping:
   controller:
     department: department
     municipality: municipality
+    airline: airline
+    airplane: airplane
 
 domain:
