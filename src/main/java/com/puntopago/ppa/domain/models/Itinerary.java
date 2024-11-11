@@ -13,9 +13,9 @@ public class Itinerary {
 
     private Long id;
 
-    private Municipality origin;
+    private Airport origin;
 
-    private Municipality destiny;
+    private Airport destiny;
 
     private Integer estimatedTime;
 

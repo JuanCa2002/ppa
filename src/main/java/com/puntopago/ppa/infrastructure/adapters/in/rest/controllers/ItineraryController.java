@@ -8,6 +8,7 @@ import com.puntopago.ppa.infrastructure.adapters.in.rest.controllers.response.it
 import com.puntopago.ppa.infrastructure.adapters.in.rest.controllers.response.itinerary.ItineraryResponse;
 import com.puntopago.ppa.infrastructure.adapters.in.rest.mappers.itinerary.ItineraryMapperRest;
 import com.puntopago.ppa.infrastructure.ports.in.itinerary.CreateItineraryUseCase;
+import com.puntopago.ppa.infrastructure.ports.in.itinerary.FindByFlightItineraryUseCase;
 import com.puntopago.ppa.infrastructure.ports.in.itinerary.FindByIdItineraryUseCase;
 import com.puntopago.ppa.infrastructure.ports.in.itinerary.UpdateItineraryUseCase;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +32,8 @@ public class ItineraryController implements ItineraryApi {
 
     private final FindByIdItineraryUseCase findByIdItineraryUseCase;
 
+    private final FindByFlightItineraryUseCase findByFlightItineraryUseCase;
+
     private final ItineraryMapperRest mapperRest;
 
     @PostMapping
@@ -52,5 +55,12 @@ public class ItineraryController implements ItineraryApi {
     public ResponseEntity<ItineraryResponse> update(UpdateItineraryRequest request) throws ApiException {
         var response = updateItineraryUseCase.execute(mapperRest.updateRequestToDomain(request));
         return new ResponseEntity<>(mapperRest.domainToResponse(response), HttpStatus.OK);
+    }
+
+    @GetMapping("/flight/{flightId}")
+    @Override
+    public ResponseEntity<ItineraryExtendResponse> findByFlight(@PathVariable Long flightId) throws ApiException {
+        var response = findByFlightItineraryUseCase.execute(flightId);
+        return new ResponseEntity<>(mapperRest.domainToExtendResponse(response), HttpStatus.OK);
     }
 }

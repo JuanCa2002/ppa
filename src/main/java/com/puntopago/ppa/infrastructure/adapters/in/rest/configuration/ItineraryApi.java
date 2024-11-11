@@ -34,4 +34,11 @@ public interface ItineraryApi {
     @Operation(summary = "Update an itinerary", description = "Update an existing itinerary")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Itinerary updated successfully", content = @Content(schema = @Schema(implementation = ItineraryResponse.class)))})
     ResponseEntity<ItineraryResponse> update(@Valid @RequestBody UpdateItineraryRequest request) throws ApiException;
+
+    @Operation(summary = "Find a itinerary by flight id", description = "Find an existing itinerary by flight id")
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Found itinerary", content = @Content(schema = @Schema(implementation = ItineraryResponse.class)))})
+    ResponseEntity<ItineraryExtendResponse> findByFlight(@Min(value = 1)
+                                                     @Max(value = 999999999999999999L)
+                                                     @Schema(description = "Flight unique id")
+                                                     Long flightId) throws ApiException;
 }

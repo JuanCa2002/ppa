@@ -44,11 +44,11 @@ public class ItineraryEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "origin_id", nullable = false)
-    private MunicipalityEntity origin;
+    private AirportEntity origin;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "destiny_id", nullable = false)
-    private MunicipalityEntity destiny;
+    private AirportEntity destiny;
 
     @Column(name = "estimated_time", nullable = false)
     private Integer estimatedTime;

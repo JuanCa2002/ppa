@@ -20,6 +20,16 @@ public class UpdateItineraryRequest {
     private Long id;
 
     @Min(value = 1)
+    @Max(value = 999999999999999999L)
+    @Schema(description = "Itinerary origin (Airport) unique id")
+    private Long originId;
+
+    @Min(value = 1)
+    @Max(value = 999999999999999999L)
+    @Schema(description = "Itinerary destiny (Airport) unique id")
+    private Long destinyId;
+
+    @Min(value = 1)
     @Max(value = 999L)
     @Schema(description = "Itinerary estimated time")
     private Integer estimatedTime;
