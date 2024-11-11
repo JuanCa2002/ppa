@@ -47,5 +47,6 @@ request-mapping:
     municipality: municipality
     airline: airline
     airplane: airplane
+    airport: airport
 
 domain:
