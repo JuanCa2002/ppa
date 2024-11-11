@@ -48,5 +48,6 @@ request-mapping:
     airline: airline
     airplane: airplane
     airport: airport
+    itinerary: itinerary
 
 domain:
