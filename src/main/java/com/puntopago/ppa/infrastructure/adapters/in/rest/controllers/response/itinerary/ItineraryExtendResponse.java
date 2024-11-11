@@ -8,11 +8,17 @@ import lombok.Setter;
 @Setter
 public class ItineraryExtendResponse extends ItineraryResponse{
 
-    @Schema(description = "Itinerary origin (Municipality) name")
+    @Schema(description = "Itinerary origin (Airport) name")
     private String originName;
 
-    @Schema(description = "Itinerary destiny (Municipality) name")
+    @Schema(description = "Itinerary destiny (Airport) name")
     private String destinyName;
+
+    @Schema(description = "Itinerary municipality origin name")
+    private String municipalityOriginName;
+
+    @Schema(description = "Itinerary municipality destiny name")
+    private String municipalityDestinyName;
 
     @Schema(description = "Itinerary origin department name")
     private String originDepartmentName;

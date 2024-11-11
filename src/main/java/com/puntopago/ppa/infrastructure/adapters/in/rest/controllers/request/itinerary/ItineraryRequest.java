@@ -17,13 +17,13 @@ public class ItineraryRequest {
     @NotNull
     @Min(value = 1)
     @Max(value = 999999999999999999L)
-    @Schema(description = "Itinerary origin (Municipality) unique id")
+    @Schema(description = "Itinerary origin (Airport) unique id")
     private Long originId;
 
     @NotNull
     @Min(value = 1)
     @Max(value = 999999999999999999L)
-    @Schema(description = "Itinerary destiny (Municipality) unique id")
+    @Schema(description = "Itinerary destiny (Airport) unique id")
     private Long destinyId;
 
     @NotNull

@@ -7,7 +7,7 @@ public interface ItineraryPort {
 
     Itinerary save(Itinerary itinerary);
 
-    Itinerary update(Itinerary itinerary) throws ApiException;
-
     Itinerary findById(Long id) throws ApiException;
+
+    Itinerary findByFlight(Long flightId) throws ApiException;
 }

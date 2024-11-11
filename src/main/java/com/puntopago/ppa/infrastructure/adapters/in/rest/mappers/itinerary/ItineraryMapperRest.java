@@ -22,14 +22,18 @@ public interface ItineraryMapperRest {
     @Mapping(target = "originId", source = "origin.id")
     ItineraryResponse domainToResponse(Itinerary domain);
 
+    @Mapping(target = "origin.id", source = "originId")
+    @Mapping(target = "destiny.id", source = "destinyId")
     Itinerary updateRequestToDomain(UpdateItineraryRequest request);
 
     @Mapping(target = "destinyId", source = "destiny.id")
     @Mapping(target = "originId", source = "origin.id")
     @Mapping(target = "destinyName", source = "destiny.name")
     @Mapping(target = "originName", source = "origin.name")
-    @Mapping(target = "originDepartmentName", source = "origin.department.name")
-    @Mapping(target = "destinyDepartmentName", source = "destiny.department.name")
+    @Mapping(target = "municipalityOriginName", source = "origin.location.name")
+    @Mapping(target = "municipalityDestinyName", source = "destiny.location.name")
+    @Mapping(target = "originDepartmentName", source = "origin.location.department.name")
+    @Mapping(target = "destinyDepartmentName", source = "destiny.location.department.name")
     ItineraryExtendResponse domainToExtendResponse(Itinerary domain);
 
 }
