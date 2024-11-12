@@ -17,4 +17,6 @@ public class Flight {
     private Itinerary itinerary;
 
     private FlightState state;
+
+    private Boolean isDirect;
 }

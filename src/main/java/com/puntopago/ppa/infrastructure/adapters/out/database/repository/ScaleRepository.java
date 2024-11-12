@@ -11,4 +11,11 @@ public interface ScaleRepository extends JpaRepository<ScaleEntity,Long> {
 
     @Query("SELECT S FROM ScaleEntity S WHERE S.itinerary.id = :itineraryId")
     List<ScaleEntity> findByItinerary(@Param("itineraryId") Long itineraryId);
+
+    @Query("""
+            SELECT CASE WHEN COUNT(S) > 0 THEN TRUE ELSE FALSE END
+            FROM ScaleEntity S WHERE S.itinerary.id = :itineraryId
+            """)
+    boolean hasScale(@Param("itineraryId") Long itineraryId);
+
 }
