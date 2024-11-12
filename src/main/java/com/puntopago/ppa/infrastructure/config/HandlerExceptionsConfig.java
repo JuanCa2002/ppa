@@ -2,6 +2,8 @@ package com.puntopago.ppa.infrastructure.config;
 
 import com.puntopago.ppa.application.exceptions.general.NotFoundException;
 import com.puntopago.ppa.infrastructure.config.responses.ErrorResponse;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @RestControllerAdvice
@@ -77,6 +81,31 @@ public class HandlerExceptionsConfig {
             response.setMessage(error);
             response.setCode(ex.getBody().getStatus());
         }
+        return response;
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public ErrorResponse handleConstraintViolationException(ConstraintViolationException ex) {
+        ErrorResponse response = new ErrorResponse();
+
+        Set<ConstraintViolation<?>> violations = ex.getConstraintViolations();
+        StringBuilder errorMessage = new StringBuilder("Validation error(s): ");
+
+        errorMessage.append(
+                violations.stream()
+                        .map(violation -> {
+                            String field = violation.getPropertyPath().toString();
+                            String message = violation.getMessage();
+                            return "Field '" + field + "' " + message;
+                        })
+                        .collect(Collectors.joining(", "))
+        );
+
+        response.setMessage(errorMessage.toString());
+        response.setCode(HttpStatus.BAD_REQUEST.value());
+
         return response;
     }
 

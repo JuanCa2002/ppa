@@ -50,5 +50,6 @@ request-mapping:
     airport: airport
     itinerary: itinerary
     flight: flight
+    scale: scale
 
 domain:
