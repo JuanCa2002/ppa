@@ -38,4 +38,9 @@ public class ScaleAdapter implements ScalePort {
         ScaleEntity entity = repository.findById(scale).orElseThrow(() -> errorNotFound);
         repository.delete(entity);
     }
+
+    @Override
+    public boolean hasScale(Long itineraryId) {
+        return repository.hasScale(itineraryId);
+    }
 }

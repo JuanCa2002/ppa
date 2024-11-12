@@ -61,4 +61,7 @@ public class FlightRqFilter extends PageableRequest {
     @Max(value = 999999999999999999L)
     @Schema(description = "Flight destiny (Municipality) unique id")
     private Long destinyId;
+
+    @Schema(description = "Flight flag to know if is direct or with scale")
+    private Boolean isDirect;
 }

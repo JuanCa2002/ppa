@@ -21,6 +21,7 @@ public interface FlightRepository extends JpaRepository<FlightEntity, Long> {
             AND (:#{#filter.unitTime} IS NULL OR F.itinerary.unitTime = :#{#filter.unitTime})
             AND (:#{#filter.airlineId} IS NULL OR F.airplane.airline.id = :#{#filter.airlineId})
             AND (:#{#filter.price} IS NULL OR F.price <= :#{#filter.price})
+            AND (:#{#filter.isDirect} IS NULL OR F.isDirect = :#{#filter.isDirect})
             AND (:state IS NULL OR F.state = :state)
             """)
     Page<FlightEntity> findByCriteria(@Param("filter")FlightFilter filter,

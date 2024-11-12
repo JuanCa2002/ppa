@@ -24,4 +24,7 @@ public class FlightResponse {
     @Schema(description = "Flight state")
     private FlightState state;
 
+    @Schema(description = "Flight flag to know if is direct or with scale")
+    private Boolean isDirect;
+
 }

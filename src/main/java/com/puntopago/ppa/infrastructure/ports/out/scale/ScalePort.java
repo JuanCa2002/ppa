@@ -12,4 +12,6 @@ public interface ScalePort {
     List<Scale> findByItinerary(Long itineraryId);
 
     void delete(Long scale) throws ApiException;
+
+    boolean hasScale(Long itineraryId);
 }

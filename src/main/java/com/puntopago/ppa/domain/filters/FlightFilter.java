@@ -30,6 +30,8 @@ public class FlightFilter {
 
     private Long destinyId;
 
+    private Boolean isDirect;
+
     private Integer rowsPerPage;
 
     private Integer skip;

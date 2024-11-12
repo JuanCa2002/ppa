@@ -51,4 +51,7 @@ public class FlightEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "flight_state", nullable = false, length = 20)
     private FlightState state;
+
+    @Column(name = "is_direct", nullable = false)
+    private Boolean isDirect;
 }
