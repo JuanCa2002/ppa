@@ -15,8 +15,8 @@ public interface FlightRepository extends JpaRepository<FlightEntity, Long> {
             SELECT F FROM FlightEntity F 
             WHERE F.itinerary.origin.location.id = :#{#filter.originId}
             AND F.itinerary.destiny.location.id = :#{#filter.destinyId}
-            AND (:#{#filter.exitDate} IS NULL OR F.itinerary.exitDate = :#{#filter.exitDate}) 
-            AND (:#{#filter.exitTime} IS NULL OR F.itinerary.exitTime = :#{#filter.exitTime})
+            AND (CAST(:#{#filter.exitDate} AS date) IS NULL OR CAST(F.itinerary.exitDate AS date) = CAST(:#{#filter.exitDate} AS date)) 
+            AND (CAST(:#{#filter.exitTime} AS string) IS NULL OR F.itinerary.exitTime = CAST(:#{#filter.exitTime} AS string))
             AND (:#{#filter.estimatedTime} IS NULL OR F.itinerary.estimatedTime <= :#{#filter.estimatedTime})
             AND (:#{#filter.unitTime} IS NULL OR F.itinerary.unitTime = :#{#filter.unitTime})
             AND (:#{#filter.airlineId} IS NULL OR F.airplane.airline.id = :#{#filter.airlineId})
